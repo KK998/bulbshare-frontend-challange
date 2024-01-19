@@ -1,12 +1,10 @@
-import React from 'react';
-import './App.css';
+import List from './components/Feed/List';
 
 function App() {
-
-
   return (
-    <div className="App">
-    </div>
+    <main className="flex flex-col">
+      <List />
+    </main>
   );
 }
 

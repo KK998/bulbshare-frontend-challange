@@ -18,8 +18,13 @@ router.get('/feed', (req, res) => {
 
     const items = parseAndReadFile('feed.json');
 
-    const start = (currentPage - 1) * pageSize;
-    const end = start + pageSize;
+    let start = (currentPage - 1) * pageSize;
+    let end = start + pageSize;
+
+    // if the start is bigger than the length of the array, return null
+    if (start >= items.length) {
+        return res.json(null);
+    }
 
     res.json(items.slice(start, end));
 });
