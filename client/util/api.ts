@@ -31,6 +31,7 @@ class API {
     }
 
     fetchFeed = async (page: number) => {
+        await new Promise(resolve => setTimeout(resolve, 1000));
         return this
             .fetch(`api/feed?PAGE=${page}&PAGE_SIZE=5`, "GET")
             .then(res => res.json() as Promise<FeedResponse>);

@@ -4,12 +4,6 @@ import useFeed from './useFeed';
 
 type ListProps = React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 
-const EndOfFeed = () => (
-    <section className='flex flex-col p-5'>
-        <p className="text-2xl text-slate-700 font-bold text-center">End of Feed 🥳</p>
-    </section>
-)
-
 function List({ className, ...props }: ListProps) {
     const { feedItems, endOfItems } = useFeed();
 
@@ -28,7 +22,11 @@ function List({ className, ...props }: ListProps) {
                     title={item.banner_text}
                 />
             ) : <Card.Loader key={index} />)}
-            {endOfItems && <EndOfFeed />}
+            {endOfItems && (
+                <section className='flex flex-col p-5'>
+                    <p className="text-2xl text-slate-700 font-bold text-center">End of Feed 🥳</p>
+                </section>
+            )}
         </section>
     )
 }
