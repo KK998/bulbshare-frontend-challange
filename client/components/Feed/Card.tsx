@@ -17,7 +17,7 @@ function Card({ header, feedItem }: CardProps) {
 
     return (
         <>
-            <article className="flex flex-col relative max-w-full sm:max-w-xl border shadow-xl rounded overflow-hidden">
+            <article data-testid="feed-card" className="flex flex-col relative max-w-full sm:max-w-xl border shadow-xl rounded overflow-hidden">
                 {header}
                 <div className="relative">
                     <aside onClick={handleOpenModal} className="bg-gradient-to-t from-black/30 to-black/10 absolute top-0 left-0 w-full h-full cursor-pointer" />
@@ -45,7 +45,7 @@ type HeaderProps = {
 
 function Header({ brand, brandName, link }: HeaderProps) {
     return (
-        <header className="flex justify-between items-center p-3">
+        <header data-testid="feed-card-header" className="flex justify-between items-center p-3">
             <div className="flex items-center gap-2">
                 <div className="w-10 h-10 flex flex-col items-center justify-center">
                     <img className="object-contain max-w-full" src={brand} alt={brandName} />
@@ -59,7 +59,7 @@ function Header({ brand, brandName, link }: HeaderProps) {
 
 function Loader() {
     return (
-        <article className="flex flex-col max-w-full w-[576px] border shadow-xl rounded animate-pulse">
+        <article data-testid="feed-card-loader" className="flex flex-col max-w-full w-[576px] border shadow-xl rounded animate-pulse">
             <div className="flex items-center p-5">
                 <div className="w-10 h-10 rounded-full bg-gray-300 mr-4" />
                 <div className="flex flex-col gap-1">

@@ -8,7 +8,7 @@ function List({ className, ...props }: ListProps) {
     const { feedItems, endOfItems } = useFeed();
 
     return (
-        <section className={cn("flex flex-col justify-start items-center container mx-auto gap-5 my-5 p-5", className)} {...props}>
+        <section data-testid="feed-list" className={cn("flex flex-col justify-start items-center container mx-auto gap-5 my-5 p-5", className)} {...props}>
             {feedItems && feedItems.map((item, index) => item.briefref ? (
                 <Card
                     /*
@@ -22,7 +22,7 @@ function List({ className, ...props }: ListProps) {
                 />
             ) : <Card.Loader key={index} />)}
             {endOfItems && (
-                <section className='flex flex-col p-5'>
+                <section data-testid="feed-list-end" className='flex flex-col p-5'>
                     <p className="text-2xl text-slate-700 font-bold text-center">End of Feed 🥳</p>
                 </section>
             )}

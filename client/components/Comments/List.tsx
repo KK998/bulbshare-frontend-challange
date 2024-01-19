@@ -11,7 +11,7 @@ function List({ briefref, brandLogo, brandName }: Props) {
     const { loading, comments } = useComments(briefref);
 
     return (
-        <section className="flex flex-col shadow-xl h-full">
+        <section date-testid="comments-list" className="flex flex-col shadow-xl h-full">
             <div className="flex items-center gap-2 p-5">
                 <img className="w-10 h-10 object-contain" src={brandLogo} alt={brandName} />
                 <span className="text-lg text-slate-700 font-black">{brandName}</span>
