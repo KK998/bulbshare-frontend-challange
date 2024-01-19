@@ -1,4 +1,14 @@
-
+export interface Comment {
+    "bcommentref": string,
+    "briefref": string,
+    "user": {
+        "userref": string,
+        "name": string,
+        "avatar": string
+    },
+    "comment": string,
+    "submitted_on": Date
+}
 export interface FeedItem {
     "briefref": string,
     "brand": {
@@ -35,6 +45,13 @@ class API {
         return this
             .fetch(`api/feed?PAGE=${page}&PAGE_SIZE=5`, "GET")
             .then(res => res.json() as Promise<FeedResponse>);
+    }
+
+    fetchComments = async (briefref: string) => {
+        // no need for any delay here
+        return this
+            .fetch(`api/comments?briefref=${briefref}`, "GET")
+            .then(res => res.json() as Promise<Comment[]>);
     }
 }
 

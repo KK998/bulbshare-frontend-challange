@@ -1,22 +1,39 @@
+import { useCallback, useState } from "react"
+import { createPortal } from "react-dom"
+import Modal from "../Modal"
+import { FeedItem } from "../../util/api"
+import FeedContent from "../Modal/FeedContent"
 
 type CardProps = {
     header: React.ReactNode
-    image: string
-    title: string
+    feedItem: FeedItem
 }
 
-function Card({ header, image, title }: CardProps) {
+function Card({ header, feedItem }: CardProps) {
+    const { banner_image: image, banner_text: title } = feedItem;
+    const [openModal, setOpenModal] = useState(false)
+    const handleOpenModal = useCallback(() => setOpenModal(true), []);
+    const handleCloseModal = useCallback(() => setOpenModal(false), []);
+
     return (
-        <article className="flex flex-col relative max-w-full sm:max-w-xl border shadow-xl rounded overflow-hidden">
-            {header}
-            <div className="relative">
-                <aside className="bg-gradient-to-t from-black/30 to-black/10 absolute top-0 left-0 w-full h-full " />
-                <img className="object-cover w-full" src={image} alt={title} />
-                <h3 className="text-2xl sm:text-4xl leading-snug font-bold absolute bottom-5 left-5 w-2/3 text-white">
-                    {title}
-                </h3>
-            </div>
-        </article>
+        <>
+            <article className="flex flex-col relative max-w-full sm:max-w-xl border shadow-xl rounded overflow-hidden">
+                {header}
+                <div className="relative">
+                    <aside onClick={handleOpenModal} className="bg-gradient-to-t from-black/30 to-black/10 absolute top-0 left-0 w-full h-full cursor-pointer" />
+                    <img className="object-cover w-full" src={image} alt={title} />
+                    <h3 className="text-2xl sm:text-4xl leading-snug font-bold absolute bottom-5 left-5 w-2/3 text-white">
+                        {title}
+                    </h3>
+                </div>
+            </article>
+            {openModal && (createPortal(
+                <Modal onClose={handleCloseModal}>
+                    <FeedContent feedItem={feedItem} />
+                </Modal>,
+                document.body
+            ))}
+        </>
     )
 }
 
@@ -61,7 +78,6 @@ function Loader() {
         </article>
     )
 }
-
 Card.Header = Header;
 Card.Loader = Loader;
 

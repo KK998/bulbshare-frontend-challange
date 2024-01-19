@@ -17,9 +17,8 @@ function List({ className, ...props }: ListProps) {
                         using the index is not ideal but it works for now
                     */
                     key={index}
+                    feedItem={item}
                     header={<Card.Header brand={item.brand.logo} brandName={item.brand.name} link={"Link"} />}
-                    image={item.banner_image}
-                    title={item.banner_text}
                 />
             ) : <Card.Loader key={index} />)}
             {endOfItems && (
