@@ -6,8 +6,11 @@ module.exports = {
     config.testMatch = [
       '<rootDir>/client/**/__tests__/**/*.{js,jsx,ts,tsx}',
       '<rootDir>/client/**/*.{spec,test}.{js,jsx,ts,tsx}',
+      '<rootDir>/server/**/__tests__/**/*.{js,jsx,ts,tsx}',
+      '<rootDir>/server/**/*.{spec,test}.{js,jsx,ts,tsx}',
     ];
-    config.roots = ['<rootDir>/client'];
+    config.roots = ['<rootDir>'];
+    config.testEnvironment = 'node';
     return config;
   },
 

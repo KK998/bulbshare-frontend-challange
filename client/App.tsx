@@ -1,12 +1,12 @@
-import React from 'react';
-import './App.css';
+import List from './components/Feed/List';
+import Header from './components/Header';
 
 function App() {
-
-
   return (
-    <div className="App">
-    </div>
+    <main className="flex flex-col">
+      <Header />
+      <List />
+    </main>
   );
 }
 
